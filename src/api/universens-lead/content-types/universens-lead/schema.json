@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "universens_leads",
+  "info": {
+    "singularName": "universens-lead",
+    "pluralName": "universens-leads",
+    "displayName": "universensLead"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "maxLength": 150
+    },
+    "telephone": {
+      "type": "string",
+      "required": true,
+      "maxLength": 14
+    },
+    "raisonSociale": {
+      "type": "string",
+      "required": true,
+      "maxLength": 150
+    },
+    "message": {
+      "type": "text",
+      "maxLength": 1500
+    },
+    "sourceForm": {
+      "type": "string"
+    },
+    "accepteTransmissionDonnees": {
+      "type": "enumeration",
+      "enum": [
+        "oui",
+        "non"
+      ]
+    }
+  }
+}

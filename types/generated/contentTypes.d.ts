@@ -967,7 +967,7 @@ export interface ApiInformationsEligibiliteInformationsEligibilite
       Attribute.SetMinMaxLength<{
         maxLength: 1500;
       }>;
-    ageBatiment: Attribute.String &
+    anneeConstructionBatiment: Attribute.String &
       Attribute.SetMinMaxLength<{
         maxLength: 50;
       }>;
@@ -1046,6 +1046,60 @@ export interface ApiInformationsEligibiliteInformationsEligibilite
   };
 }
 
+export interface ApiUniversensLeadUniversensLead extends Schema.CollectionType {
+  collectionName: 'universens_leads';
+  info: {
+    singularName: 'universens-lead';
+    pluralName: 'universens-leads';
+    displayName: 'universensLead';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    nom: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 150;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 14;
+      }>;
+    raisonSociale: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 150;
+      }>;
+    message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1500;
+      }>;
+    sourceForm: Attribute.String;
+    accepteTransmissionDonnees: Attribute.Enumeration<['oui', 'non']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::universens-lead.universens-lead',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::universens-lead.universens-lead',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiUploadChecklistUploadChecklist
   extends Schema.CollectionType {
   collectionName: 'upload_checklists';
@@ -1099,6 +1153,7 @@ declare module '@strapi/types' {
       'api::contact-form.contact-form': ApiContactFormContactForm;
       'api::contact-form-homepage.contact-form-homepage': ApiContactFormHomepageContactFormHomepage;
       'api::informations-eligibilite.informations-eligibilite': ApiInformationsEligibiliteInformationsEligibilite;
+      'api::universens-lead.universens-lead': ApiUniversensLeadUniversensLead;
       'api::upload-checklist.upload-checklist': ApiUploadChecklistUploadChecklist;
     }
   }
