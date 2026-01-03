@@ -1,3 +1,5 @@
+// /src/api/praxis-energie-contact/content-types/praxis-energie-contact/lifecycles.js
+
 const axios = require("axios");
 
 const formatValue = (value) => value || "Non renseigné";
@@ -5,15 +7,15 @@ const formatValue = (value) => value || "Non renseigné";
 const buildMessage = (result, context) => `
 ${context}
 
-- Nom : ${formatValue(result.nom)}
-- Email : ${formatValue(result.email)}
+- Raison sociale : ${formatValue(result.raison_sociale)}
+- SIRET : ${formatValue(result.SIRET)}
+- Nom : ${formatValue(result.Nom)}
+- Sexe : ${formatValue(result.Sexe)}
+- Message : ${formatValue(result.Message)}
+- Horaire début : ${formatValue(result.HoraireDebut)}
+- Horaire fin : ${formatValue(result.HoraireFin)}
 - Téléphone : ${formatValue(result.telephone)}
-- Raison sociale : ${formatValue(result.raisonSociale)}
-- Message : ${formatValue(result.message)}
-- Source du formulaire : ${formatValue(result.sourceForm)}
-- Accepte transmission données : ${formatValue(
-  result.accepteTransmissionDonnees
-)}
+- Email : ${formatValue(result.email)}
 `;
 
 const sendToDiscord = async (message, logPrefix) => {
@@ -23,12 +25,9 @@ const sendToDiscord = async (message, logPrefix) => {
     const response = await axios.post(discordWebhookUrl, {
       content: message,
     });
-    console.log(
-      `${logPrefix} Discord webhook envoyé (universens-lead). Statut :`,
-      response.status
-    );
+    console.log(`${logPrefix} Discord webhook envoyé. Statut :`, response.status);
   } catch (error) {
-    console.error(`${logPrefix} Erreur Discord (universens-lead) :`, {
+    console.error(`${logPrefix} Erreur Discord :`, {
       status: error.response?.status,
       data: error.response?.data,
       message: error.message,
@@ -38,22 +37,22 @@ const sendToDiscord = async (message, logPrefix) => {
 
 module.exports = {
   async afterCreate(event) {
-    console.log("[afterCreate] universens-lead triggered");
+    console.log("[afterCreate] praxis-energie-contact triggered");
 
     const message = buildMessage(
       event.result,
-      "🆕 **NOUVEAU LEAD UNIVERSENS REÇU**"
+      "Nouveau formulaire reçu (praxis-energie-contact) :"
     );
 
     await sendToDiscord(message, "[afterCreate]");
   },
 
   async afterUpdate(event) {
-    console.log("[afterUpdate] universens-lead triggered");
+    console.log("[afterUpdate] praxis-energie-contact triggered");
 
     const message = buildMessage(
       event.result,
-      "✏️ **LEAD UNIVERSENS MIS À JOUR**"
+      "Formulaire mis à jour (praxis-energie-contact) :"
     );
 
     await sendToDiscord(message, "[afterUpdate]");

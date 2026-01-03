@@ -24,7 +24,7 @@
     "telephone": {
       "type": "string",
       "required": true,
-      "maxLength": 14
+      "maxLength": 16
     },
     "raisonSociale": {
       "type": "string",

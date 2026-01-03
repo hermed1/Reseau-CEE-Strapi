@@ -907,6 +907,364 @@ export interface ApiContactFormHomepageContactFormHomepage
   };
 }
 
+export interface ApiEcoCeeContactEcoCeeContact extends Schema.CollectionType {
+  collectionName: 'eco_cee_contacts';
+  info: {
+    singularName: 'eco-cee-contact';
+    pluralName: 'eco-cee-contacts';
+    displayName: 'eco-cee-contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    SIRET: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    Nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    HoraireDebut: Attribute.String & Attribute.Private;
+    HoraireFin: Attribute.String & Attribute.Private;
+    Message: Attribute.Text &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    Sexe: Attribute.Enumeration<['monsieur', 'madame']> & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::eco-cee-contact.eco-cee-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::eco-cee-contact.eco-cee-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEcoCeeHeroEcoCeeHero extends Schema.CollectionType {
+  collectionName: 'eco_cee_heroes';
+  info: {
+    singularName: 'eco-cee-hero';
+    pluralName: 'eco-cee-heroes';
+    displayName: 'eco-cee-hero';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    Message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::eco-cee-hero.eco-cee-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::eco-cee-hero.eco-cee-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEcoPerformanceSolutionsContactEcoPerformanceSolutionsContact
+  extends Schema.CollectionType {
+  collectionName: 'eco_performance_solutions_contacts';
+  info: {
+    singularName: 'eco-performance-solutions-contact';
+    pluralName: 'eco-performance-solutions-contacts';
+    displayName: 'eco-performance-solutions-contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    SIRET: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    Nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    HoraireDebut: Attribute.String & Attribute.Private;
+    HoraireFin: Attribute.String & Attribute.Private;
+    Message: Attribute.Text &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    Sexe: Attribute.Enumeration<['monsieur', 'madame']> & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::eco-performance-solutions-contact.eco-performance-solutions-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::eco-performance-solutions-contact.eco-performance-solutions-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEcoPerformanceSolutionsHeroEcoPerformanceSolutionsHero
+  extends Schema.CollectionType {
+  collectionName: 'eco_performance_solutions_heroes';
+  info: {
+    singularName: 'eco-performance-solutions-hero';
+    pluralName: 'eco-performance-solutions-heroes';
+    displayName: 'eco-performance-solutions-hero';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    Message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::eco-performance-solutions-hero.eco-performance-solutions-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::eco-performance-solutions-hero.eco-performance-solutions-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHpFlottanteContactHpFlottanteContact
+  extends Schema.CollectionType {
+  collectionName: 'hp_flottante_contacts';
+  info: {
+    singularName: 'hp-flottante-contact';
+    pluralName: 'hp-flottante-contacts';
+    displayName: 'hp-flottante-contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    SIRET: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    Nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    HoraireDebut: Attribute.String & Attribute.Private;
+    HoraireFin: Attribute.String & Attribute.Private;
+    Message: Attribute.Text &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    Sexe: Attribute.Enumeration<['monsieur', 'madame']> & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hp-flottante-contact.hp-flottante-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hp-flottante-contact.hp-flottante-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHpFlottanteHeroHpFlottanteHero
+  extends Schema.CollectionType {
+  collectionName: 'hp_flottante_heroes';
+  info: {
+    singularName: 'hp-flottante-hero';
+    pluralName: 'hp-flottante-heroes';
+    displayName: 'hp-flottante-hero';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    Message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hp-flottante-hero.hp-flottante-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hp-flottante-hero.hp-flottante-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInformationsEligibiliteInformationsEligibilite
   extends Schema.CollectionType {
   collectionName: 'informations_eligibilites';
@@ -1046,6 +1404,366 @@ export interface ApiInformationsEligibiliteInformationsEligibilite
   };
 }
 
+export interface ApiPraxisEnergieContactPraxisEnergieContact
+  extends Schema.CollectionType {
+  collectionName: 'praxis_energie_contacts';
+  info: {
+    singularName: 'praxis-energie-contact';
+    pluralName: 'praxis-energie-contacts';
+    displayName: 'praxis-energie-contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    SIRET: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    Nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    HoraireDebut: Attribute.String & Attribute.Private;
+    HoraireFin: Attribute.String & Attribute.Private;
+    Message: Attribute.Text &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    Sexe: Attribute.Enumeration<['monsieur', 'madame']> & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::praxis-energie-contact.praxis-energie-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::praxis-energie-contact.praxis-energie-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPraxisEnergieHeroPraxisEnergieHero
+  extends Schema.CollectionType {
+  collectionName: 'praxis_energie_heroes';
+  info: {
+    singularName: 'praxis-energie-hero';
+    pluralName: 'praxis-energie-heroes';
+    displayName: 'praxis-energie-hero';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    Message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::praxis-energie-hero.praxis-energie-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::praxis-energie-hero.praxis-energie-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPraxisEnergieIndustrieContactPraxisEnergieIndustrieContact
+  extends Schema.CollectionType {
+  collectionName: 'praxis_energie_industrie_contacts';
+  info: {
+    singularName: 'praxis-energie-industrie-contact';
+    pluralName: 'praxis-energie-industrie-contacts';
+    displayName: 'praxis-energie-industrie-contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    SIRET: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    Nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    HoraireDebut: Attribute.String & Attribute.Private;
+    HoraireFin: Attribute.String & Attribute.Private;
+    Message: Attribute.Text &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    Sexe: Attribute.Enumeration<['monsieur', 'madame']> & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::praxis-energie-industrie-contact.praxis-energie-industrie-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::praxis-energie-industrie-contact.praxis-energie-industrie-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPraxisEnergieIndustrieHeroPraxisEnergieIndustrieHero
+  extends Schema.CollectionType {
+  collectionName: 'praxis_energie_industrie_heroes';
+  info: {
+    singularName: 'praxis-energie-industrie-hero';
+    pluralName: 'praxis-energie-industrie-heroes';
+    displayName: 'praxis-energie-industrie-hero';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    Message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::praxis-energie-industrie-hero.praxis-energie-industrie-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::praxis-energie-industrie-hero.praxis-energie-industrie-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReseauCeeIndustrieContactReseauCeeIndustrieContact
+  extends Schema.CollectionType {
+  collectionName: 'reseau_cee_industrie_contacts';
+  info: {
+    singularName: 'reseau-cee-industrie-contact';
+    pluralName: 'reseau-cee-industrie-contacts';
+    displayName: 'reseau-cee-industrie-contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    SIRET: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    Nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    HoraireDebut: Attribute.String & Attribute.Private;
+    HoraireFin: Attribute.String & Attribute.Private;
+    Message: Attribute.Text &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    Sexe: Attribute.Enumeration<['monsieur', 'madame']> & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reseau-cee-industrie-contact.reseau-cee-industrie-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reseau-cee-industrie-contact.reseau-cee-industrie-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReseauCeeIndustrieHeroReseauCeeIndustrieHero
+  extends Schema.CollectionType {
+  collectionName: 'reseau_cee_industrie_heroes';
+  info: {
+    singularName: 'reseau-cee-industrie-hero';
+    pluralName: 'reseau-cee-industrie-heroes';
+    displayName: 'reseau-cee-industrie-hero';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    Message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reseau-cee-industrie-hero.reseau-cee-industrie-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reseau-cee-industrie-hero.reseau-cee-industrie-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiUniversensLeadUniversensLead extends Schema.CollectionType {
   collectionName: 'universens_leads';
   info: {
@@ -1070,7 +1788,7 @@ export interface ApiUniversensLeadUniversensLead extends Schema.CollectionType {
     telephone: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
-        maxLength: 14;
+        maxLength: 16;
       }>;
     raisonSociale: Attribute.String &
       Attribute.Required &
@@ -1152,7 +1870,19 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::contact-form.contact-form': ApiContactFormContactForm;
       'api::contact-form-homepage.contact-form-homepage': ApiContactFormHomepageContactFormHomepage;
+      'api::eco-cee-contact.eco-cee-contact': ApiEcoCeeContactEcoCeeContact;
+      'api::eco-cee-hero.eco-cee-hero': ApiEcoCeeHeroEcoCeeHero;
+      'api::eco-performance-solutions-contact.eco-performance-solutions-contact': ApiEcoPerformanceSolutionsContactEcoPerformanceSolutionsContact;
+      'api::eco-performance-solutions-hero.eco-performance-solutions-hero': ApiEcoPerformanceSolutionsHeroEcoPerformanceSolutionsHero;
+      'api::hp-flottante-contact.hp-flottante-contact': ApiHpFlottanteContactHpFlottanteContact;
+      'api::hp-flottante-hero.hp-flottante-hero': ApiHpFlottanteHeroHpFlottanteHero;
       'api::informations-eligibilite.informations-eligibilite': ApiInformationsEligibiliteInformationsEligibilite;
+      'api::praxis-energie-contact.praxis-energie-contact': ApiPraxisEnergieContactPraxisEnergieContact;
+      'api::praxis-energie-hero.praxis-energie-hero': ApiPraxisEnergieHeroPraxisEnergieHero;
+      'api::praxis-energie-industrie-contact.praxis-energie-industrie-contact': ApiPraxisEnergieIndustrieContactPraxisEnergieIndustrieContact;
+      'api::praxis-energie-industrie-hero.praxis-energie-industrie-hero': ApiPraxisEnergieIndustrieHeroPraxisEnergieIndustrieHero;
+      'api::reseau-cee-industrie-contact.reseau-cee-industrie-contact': ApiReseauCeeIndustrieContactReseauCeeIndustrieContact;
+      'api::reseau-cee-industrie-hero.reseau-cee-industrie-hero': ApiReseauCeeIndustrieHeroReseauCeeIndustrieHero;
       'api::universens-lead.universens-lead': ApiUniversensLeadUniversensLead;
       'api::upload-checklist.upload-checklist': ApiUploadChecklistUploadChecklist;
     }
