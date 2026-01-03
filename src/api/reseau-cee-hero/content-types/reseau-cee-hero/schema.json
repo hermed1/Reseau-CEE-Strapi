@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reseau_cee_heroes",
+  "info": {
+    "singularName": "reseau-cee-hero",
+    "pluralName": "reseau-cee-heroes",
+    "displayName": "reseau-cee-hero",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "raison_sociale": {
+      "type": "string",
+      "maxLength": 255,
+      "private": true
+    },
+    "nom": {
+      "type": "string",
+      "maxLength": 255,
+      "private": true
+    },
+    "telephone": {
+      "type": "string",
+      "private": true,
+      "required": true,
+      "maxLength": 20
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "private": true,
+      "maxLength": 254
+    },
+    "Message": {
+      "type": "text",
+      "maxLength": 1000
+    }
+  }
+}
