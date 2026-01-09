@@ -14,7 +14,7 @@ Nouveau formulaire reçu (hp-flottante-hero) :
 - Nom : ${result.nom || "Non renseigné"}
 - Téléphone : ${result.telephone || "Non renseigné"}
 - Email : ${result.email || "Non renseigné"}
-- Message : ${result.Message || "Non renseigné"}
+- Message : ${result.message || "Non renseigné"}
 `;
 
     try {
@@ -50,7 +50,7 @@ Formulaire mis à jour (hp-flottante-hero) :
 - Nom : ${result.nom || "Non renseigné"}
 - Téléphone : ${result.telephone || "Non renseigné"}
 - Email : ${result.email || "Non renseigné"}
-- Message : ${result.Message || "Non renseigné"}
+- Message : ${result.message || "Non renseigné"}
 `;
 
     try {

@@ -11,28 +11,29 @@ ${context}
 - SIRET : ${formatValue(result.SIRET)}
 - Nom : ${formatValue(result.Nom)}
 - Sexe : ${formatValue(result.Sexe)}
-- Message : ${formatValue(result.Message)}
+- Message : ${formatValue(result.message)}
 - Horaire début : ${formatValue(result.HoraireDebut)}
 - Horaire fin : ${formatValue(result.HoraireFin)}
 - Téléphone : ${formatValue(result.telephone)}
 - Email : ${formatValue(result.email)}
 `;
 
-const sendToDiscord = async (message, logPrefix) => {
+const sendToDiscord = (message, logPrefix) => {
   const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
-  try {
-    const response = await axios.post(discordWebhookUrl, {
-      content: message,
-    });
+  axios.post(discordWebhookUrl, {
+    content: message,
+  })
+  .then(response => {
     console.log(`${logPrefix} Discord webhook envoyé. Statut :`, response.status);
-  } catch (error) {
+  })
+  .catch(error => {
     console.error(`${logPrefix} Erreur Discord :`, {
       status: error.response?.status,
       data: error.response?.data,
       message: error.message,
     });
-  }
+  });
 };
 
 module.exports = {
@@ -44,7 +45,7 @@ module.exports = {
       "Nouveau formulaire reçu (reseau-cee-industrie-contact) :"
     );
 
-    await sendToDiscord(message, "[afterCreate]");
+    sendToDiscord(message, "[afterCreate]");
   },
 
   async afterUpdate(event) {
@@ -55,6 +56,6 @@ module.exports = {
       "Formulaire mis à jour (reseau-cee-industrie-contact) :"
     );
 
-    await sendToDiscord(message, "[afterUpdate]");
+    sendToDiscord(message, "[afterUpdate]");
   },
 };

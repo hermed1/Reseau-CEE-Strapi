@@ -46,7 +46,7 @@
       "type": "string",
       "private": true
     },
-    "Message": {
+    "message": {
       "type": "text",
       "maxLength": 1000,
       "private": true

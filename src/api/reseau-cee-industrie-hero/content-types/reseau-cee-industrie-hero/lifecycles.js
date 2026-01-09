@@ -14,18 +14,19 @@ Nouveau formulaire reçu (reseau-cee-industrie-hero) :
 - Nom : ${result.nom || "Non renseigné"}
 - Téléphone : ${result.telephone || "Non renseigné"}
 - Email : ${result.email || "Non renseigné"}
-- Message : ${result.Message || "Non renseigné"}
+- Message : ${result.message || "Non renseigné"}
 `;
 
-    try {
-      const response = await axios.post(discordWebhookUrl, {
-        content: message,
-      });
+    axios.post(discordWebhookUrl, {
+      content: message,
+    })
+    .then(response => {
       console.log(
         "[afterCreate] Discord webhook envoyé (reseau-cee-industrie-hero). Statut :",
         response.status
       );
-    } catch (error) {
+    })
+    .catch(error => {
       console.error(
         "[afterCreate] Erreur lors de l'envoi à Discord (reseau-cee-industrie-hero) :",
         {
@@ -34,7 +35,7 @@ Nouveau formulaire reçu (reseau-cee-industrie-hero) :
           message: error.message,
         }
       );
-    }
+    });
   },
 
   async afterUpdate(event) {
@@ -50,18 +51,19 @@ Formulaire mis à jour (reseau-cee-industrie-hero) :
 - Nom : ${result.nom || "Non renseigné"}
 - Téléphone : ${result.telephone || "Non renseigné"}
 - Email : ${result.email || "Non renseigné"}
-- Message : ${result.Message || "Non renseigné"}
+- Message : ${result.message || "Non renseigné"}
 `;
 
-    try {
-      const response = await axios.post(discordWebhookUrl, {
-        content: message,
-      });
+    axios.post(discordWebhookUrl, {
+      content: message,
+    })
+    .then(response => {
       console.log(
         "[afterUpdate] Discord webhook envoyé (reseau-cee-industrie-hero). Statut :",
         response.status
       );
-    } catch (error) {
+    })
+    .catch(error => {
       console.error(
         "[afterUpdate] Erreur lors de l'envoi à Discord (reseau-cee-industrie-hero) :",
         {
@@ -70,6 +72,6 @@ Formulaire mis à jour (reseau-cee-industrie-hero) :
           message: error.message,
         }
       );
-    }
+    });
   },
 };

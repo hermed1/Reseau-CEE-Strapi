@@ -34,7 +34,7 @@
       "private": true,
       "maxLength": 254
     },
-    "Message": {
+    "message": {
       "type": "text",
       "maxLength": 1000
     }

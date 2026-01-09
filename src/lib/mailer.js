@@ -73,6 +73,10 @@ function buildEmailHTML(formData) {
 
   const toMediaArray = (media) => {
     if (!media) return [];
+    // FIX: Gérer le format Strapi v4 { data: [...] }
+    if (media.data) {
+      media = media.data;
+    }
     if (Array.isArray(media)) return media;
     return [media];
   };
@@ -83,12 +87,15 @@ function buildEmailHTML(formData) {
 
     const items = files
       .map((file) => {
-        if (!file || !file.url) return null;
-        const absoluteUrl = file.url.startsWith("http")
-          ? file.url
-          : `${process.env.STRAPI_URL || "http://localhost:1337"}${file.url}`;
-        const name = file.name || `${file.hash || "fichier"}${file.ext || ""}`;
-        const sizeLabel = formatFileSize(file.size);
+        // Gérer le cas où file a un attribut 'attributes'
+        const fileData = file.attributes || file;
+
+        if (!fileData || !fileData.url) return null;
+        const absoluteUrl = fileData.url.startsWith("http")
+          ? fileData.url
+          : `${process.env.STRAPI_URL || "http://localhost:1337"}${fileData.url}`;
+        const name = fileData.name || `${fileData.hash || "fichier"}${fileData.ext || ""}`;
+        const sizeLabel = formatFileSize(fileData.size);
         const label = sizeLabel ? `${name} (${sizeLabel})` : name;
         return `<li><a href="${absoluteUrl}" target="_blank" rel="noopener noreferrer">${label}</a></li>`;
       })
@@ -418,35 +425,45 @@ function prepareAttachments(formData) {
   ];
 
   mediaFields.forEach((fieldName) => {
-    const media = formData[fieldName];
+    let media = formData[fieldName];
+
+    // FIX: Gérer le format Strapi v4 { data: [...] }
+    if (media && media.data) {
+      media = media.data;
+    }
 
     if (media && Array.isArray(media) && media.length > 0) {
       // Si c'est un tableau de médias
       media.forEach((file, index) => {
-        if (file && file.url) {
-          const fileUrl = file.url.startsWith('http')
-            ? file.url
-            : `${process.env.STRAPI_URL || "http://localhost:1337"}${file.url}`;
+        // Gérer le cas où file a un attribut 'attributes'
+        const fileData = file.attributes || file;
+
+        if (fileData && fileData.url) {
+          const fileUrl = fileData.url.startsWith('http')
+            ? fileData.url
+            : `${process.env.STRAPI_URL || "http://localhost:1337"}${fileData.url}`;
 
           attachments.push({
-            filename: file.name || `${fieldName}_${index + 1}_${file.hash}${file.ext}`,
+            filename: fileData.name || `${fieldName}_${index + 1}_${fileData.hash}${fileData.ext}`,
             path: fileUrl,
           });
         }
       });
-    } else if (media && media.url) {
+    } else if (media && (media.url || (media.attributes && media.attributes.url))) {
       // Si c'est un seul média
-      const fileUrl = media.url.startsWith('http')
-        ? media.url
-        : `${process.env.STRAPI_URL || "http://localhost:1337"}${media.url}`;
+      const fileData = media.attributes || media;
+      const fileUrl = fileData.url.startsWith('http')
+        ? fileData.url
+        : `${process.env.STRAPI_URL || "http://localhost:1337"}${fileData.url}`;
 
       attachments.push({
-        filename: media.name || `${fieldName}_${media.hash}${media.ext}`,
+        filename: fileData.name || `${fieldName}_${fileData.hash}${fileData.ext}`,
         path: fileUrl,
       });
     }
   });
 
+  console.log(`[prepareAttachments] ${attachments.length} pièces jointes préparées`);
   return attachments;
 }
 

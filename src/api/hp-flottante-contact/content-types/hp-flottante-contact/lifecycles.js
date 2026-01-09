@@ -11,7 +11,7 @@ ${context}
 - SIRET : ${formatValue(result.SIRET)}
 - Nom : ${formatValue(result.Nom)}
 - Sexe : ${formatValue(result.Sexe)}
-- Message : ${formatValue(result.Message)}
+- Message : ${formatValue(result.message)}
 - Horaire début : ${formatValue(result.HoraireDebut)}
 - Horaire fin : ${formatValue(result.HoraireFin)}
 - Téléphone : ${formatValue(result.telephone)}
