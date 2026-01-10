@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "formation_universens",
+  "info": {
+    "singularName": "formation-universens",
+    "pluralName": "formation-universens",
+    "displayName": "formationUniversens"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "maxLength": 150
+    },
+    "telephone": {
+      "type": "string",
+      "required": true,
+      "maxLength": 16
+    },
+    "message": {
+      "type": "text",
+      "maxLength": 1500
+    }
+  }
+}
