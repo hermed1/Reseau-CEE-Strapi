@@ -828,7 +828,7 @@ export interface ApiContactFormContactForm extends Schema.CollectionType {
       }>;
     HoraireDebut: Attribute.String & Attribute.Private;
     HoraireFin: Attribute.String & Attribute.Private;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
@@ -886,7 +886,7 @@ export interface ApiContactFormHomepageContactFormHomepage
       Attribute.SetMinMaxLength<{
         maxLength: 254;
       }>;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
       }>;
@@ -947,7 +947,7 @@ export interface ApiEcoCeeContactEcoCeeContact extends Schema.CollectionType {
       }>;
     HoraireDebut: Attribute.String & Attribute.Private;
     HoraireFin: Attribute.String & Attribute.Private;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
@@ -1004,7 +1004,7 @@ export interface ApiEcoCeeHeroEcoCeeHero extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 254;
       }>;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
       }>;
@@ -1066,7 +1066,7 @@ export interface ApiEcoPerformanceSolutionsContactEcoPerformanceSolutionsContact
       }>;
     HoraireDebut: Attribute.String & Attribute.Private;
     HoraireFin: Attribute.String & Attribute.Private;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
@@ -1124,7 +1124,7 @@ export interface ApiEcoPerformanceSolutionsHeroEcoPerformanceSolutionsHero
       Attribute.SetMinMaxLength<{
         maxLength: 254;
       }>;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
       }>;
@@ -1138,6 +1138,54 @@ export interface ApiEcoPerformanceSolutionsHeroEcoPerformanceSolutionsHero
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::eco-performance-solutions-hero.eco-performance-solutions-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFormationUniversensFormationUniversens
+  extends Schema.CollectionType {
+  collectionName: 'formation_universens';
+  info: {
+    singularName: 'formation-universens';
+    pluralName: 'formations-universens';
+    displayName: 'formationUniversens';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    nom: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 150;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 16;
+      }>;
+    message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1500;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::formation-universens.formation-universens',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::formation-universens.formation-universens',
       'oneToOne',
       'admin::user'
     > &
@@ -1186,7 +1234,7 @@ export interface ApiHpFlottanteContactHpFlottanteContact
       }>;
     HoraireDebut: Attribute.String & Attribute.Private;
     HoraireFin: Attribute.String & Attribute.Private;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
@@ -1244,7 +1292,7 @@ export interface ApiHpFlottanteHeroHpFlottanteHero
       Attribute.SetMinMaxLength<{
         maxLength: 254;
       }>;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
       }>;
@@ -1445,7 +1493,7 @@ export interface ApiPraxisEnergieContactPraxisEnergieContact
       }>;
     HoraireDebut: Attribute.String & Attribute.Private;
     HoraireFin: Attribute.String & Attribute.Private;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
@@ -1503,7 +1551,7 @@ export interface ApiPraxisEnergieHeroPraxisEnergieHero
       Attribute.SetMinMaxLength<{
         maxLength: 254;
       }>;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
       }>;
@@ -1565,7 +1613,7 @@ export interface ApiPraxisEnergieIndustrieContactPraxisEnergieIndustrieContact
       }>;
     HoraireDebut: Attribute.String & Attribute.Private;
     HoraireFin: Attribute.String & Attribute.Private;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
@@ -1623,7 +1671,7 @@ export interface ApiPraxisEnergieIndustrieHeroPraxisEnergieIndustrieHero
       Attribute.SetMinMaxLength<{
         maxLength: 254;
       }>;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
       }>;
@@ -1637,6 +1685,125 @@ export interface ApiPraxisEnergieIndustrieHeroPraxisEnergieIndustrieHero
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::praxis-energie-industrie-hero.praxis-energie-industrie-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReseauCeeContactReseauCeeContact
+  extends Schema.CollectionType {
+  collectionName: 'reseau_cee_contacts';
+  info: {
+    singularName: 'reseau-cee-contact';
+    pluralName: 'reseau-cee-contacts';
+    displayName: 'reseau-cee-contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    SIRET: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    Nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    HoraireDebut: Attribute.String & Attribute.Private;
+    HoraireFin: Attribute.String & Attribute.Private;
+    message: Attribute.Text &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    Sexe: Attribute.Enumeration<['monsieur', 'madame']> & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reseau-cee-contact.reseau-cee-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reseau-cee-contact.reseau-cee-contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReseauCeeHeroReseauCeeHero extends Schema.CollectionType {
+  collectionName: 'reseau_cee_heroes';
+  info: {
+    singularName: 'reseau-cee-hero';
+    pluralName: 'reseau-cee-heroes';
+    displayName: 'reseau-cee-hero';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    raison_sociale: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    nom: Attribute.String &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    telephone: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        maxLength: 254;
+      }>;
+    message: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reseau-cee-hero.reseau-cee-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reseau-cee-hero.reseau-cee-hero',
       'oneToOne',
       'admin::user'
     > &
@@ -1685,7 +1852,7 @@ export interface ApiReseauCeeIndustrieContactReseauCeeIndustrieContact
       }>;
     HoraireDebut: Attribute.String & Attribute.Private;
     HoraireFin: Attribute.String & Attribute.Private;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
@@ -1743,7 +1910,7 @@ export interface ApiReseauCeeIndustrieHeroReseauCeeIndustrieHero
       Attribute.SetMinMaxLength<{
         maxLength: 254;
       }>;
-    Message: Attribute.Text &
+    message: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 1000;
       }>;
@@ -1874,6 +2041,7 @@ declare module '@strapi/types' {
       'api::eco-cee-hero.eco-cee-hero': ApiEcoCeeHeroEcoCeeHero;
       'api::eco-performance-solutions-contact.eco-performance-solutions-contact': ApiEcoPerformanceSolutionsContactEcoPerformanceSolutionsContact;
       'api::eco-performance-solutions-hero.eco-performance-solutions-hero': ApiEcoPerformanceSolutionsHeroEcoPerformanceSolutionsHero;
+      'api::formation-universens.formation-universens': ApiFormationUniversensFormationUniversens;
       'api::hp-flottante-contact.hp-flottante-contact': ApiHpFlottanteContactHpFlottanteContact;
       'api::hp-flottante-hero.hp-flottante-hero': ApiHpFlottanteHeroHpFlottanteHero;
       'api::informations-eligibilite.informations-eligibilite': ApiInformationsEligibiliteInformationsEligibilite;
@@ -1881,6 +2049,8 @@ declare module '@strapi/types' {
       'api::praxis-energie-hero.praxis-energie-hero': ApiPraxisEnergieHeroPraxisEnergieHero;
       'api::praxis-energie-industrie-contact.praxis-energie-industrie-contact': ApiPraxisEnergieIndustrieContactPraxisEnergieIndustrieContact;
       'api::praxis-energie-industrie-hero.praxis-energie-industrie-hero': ApiPraxisEnergieIndustrieHeroPraxisEnergieIndustrieHero;
+      'api::reseau-cee-contact.reseau-cee-contact': ApiReseauCeeContactReseauCeeContact;
+      'api::reseau-cee-hero.reseau-cee-hero': ApiReseauCeeHeroReseauCeeHero;
       'api::reseau-cee-industrie-contact.reseau-cee-industrie-contact': ApiReseauCeeIndustrieContactReseauCeeIndustrieContact;
       'api::reseau-cee-industrie-hero.reseau-cee-industrie-hero': ApiReseauCeeIndustrieHeroReseauCeeIndustrieHero;
       'api::universens-lead.universens-lead': ApiUniversensLeadUniversensLead;
