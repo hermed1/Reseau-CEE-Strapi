@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "desembouage_contacts",
+  "info": {
+    "singularName": "desembouage-contact",
+    "pluralName": "desembouage-contacts",
+    "displayName": "Desembouage Contact",
+    "description": "Formulaire de contact pour le site desembouage-collectif.fr"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom_copro": {
+      "type": "string",
+      "maxLength": 255,
+      "private": true,
+      "required": true
+    },
+    "nom_complet": {
+      "type": "string",
+      "maxLength": 255,
+      "private": true,
+      "required": true
+    },
+    "telephone": {
+      "type": "string",
+      "maxLength": 25,
+      "private": true,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "maxLength": 254,
+      "private": true,
+      "required": true
+    },
+    "message": {
+      "type": "text",
+      "maxLength": 1000,
+      "private": true
+    }
+  }
+}
