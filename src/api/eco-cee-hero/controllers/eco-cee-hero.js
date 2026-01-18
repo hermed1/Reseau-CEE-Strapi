@@ -119,7 +119,7 @@ module.exports = createCoreController('api::eco-cee-hero.eco-cee-hero', ({ strap
             </div>
           </div>
 
-          <p style="margin-top: 30px; color: #37474F; font-size: 14px;">Bonne journée.</p>
+          <p style="margin-top: 30px; color: #37474F; font-size: 14px;">Bonne journée,</p>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@ module.exports = createCoreController('api::eco-cee-hero.eco-cee-hero', ({ strap
     // 3. Création du brouillon Gmail
     try {
       await mailer.createDraft({
-        subject: `Transmission contact CEE - ${data.raison_sociale || data.nom}`,
+        subject: "Transmission contact CEE",
         html: htmlContent
       });
       console.log(`[EcoCEE-Hero] Brouillon créé pour ${data.email}`);

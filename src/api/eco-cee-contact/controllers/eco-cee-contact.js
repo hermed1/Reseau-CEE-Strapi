@@ -78,7 +78,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
             <!-- SIRET (Ligne séparée) -->
             <div style="padding: 12px 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">🆔</div>
+              <div style="width: 25px; font-size: 16px;">🔢</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">SIRET</div>
                 <div style="font-size: 14px; color: #263238; font-weight: 600; margin-top: 1px;">
@@ -141,7 +141,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
             </div>
           </div>
 
-          <p style="margin-top: 30px; color: #37474F; font-size: 14px;">Bonne journée.</p>
+          <p style="margin-top: 30px; color: #37474F; font-size: 14px;">Bonne journée,</p>
         </div>
       </div>
     </div>
@@ -150,7 +150,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
     // 3. Création du brouillon Gmail
     try {
       await mailer.createDraft({
-        subject: `Transmission contact CEE - ${data.raison_sociale || data.Nom}`,
+        subject: "Transmission contact CEE",
         html: htmlContent
       });
       console.log(`[EcoCEE-Contact] Brouillon créé pour ${data.email}`);
