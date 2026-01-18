@@ -1,4 +1,6 @@
 const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const MailComposer = require("nodemailer/lib/mail-composer");
 
 /**
  * Fonction pour envoyer un email via Nodemailer avec OAuth2
@@ -39,6 +41,66 @@ async function sendEmail({ subject, html, attachments = [] }) {
     return info;
   } catch (error) {
     console.error("Erreur lors de l'envoi de l'email :", error);
+    throw error;
+  }
+}
+
+/**
+ * Fonction pour créer un BROUILLON dans Gmail (au lieu d'envoyer)
+ * @param {Object} options - Options de l'email
+ * @param {string} options.subject - Sujet de l'email
+ * @param {string} options.html - Contenu HTML de l'email
+ * @param {Array} options.attachments - Pièces jointes (optionnel)
+ * @returns {Promise<Object>} - Réponse de l'API Gmail
+ */
+async function createDraft({ subject, html, attachments = [] }) {
+  try {
+    // 1. Authentification Google API avec les mêmes credentials
+    const auth = new google.auth.OAuth2(
+      process.env.CLIENT_ID,
+      process.env.CLIENT_SECRET
+    );
+    auth.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+
+    const gmail = google.gmail({ version: 'v1', auth });
+
+    // 2. Construction de l'email brut (MIME)
+    const recipients = [process.env.EMAIL_DESTINATAIRE, process.env.EMAIL_DESTINATAIRE_2].filter(Boolean).join(', ');
+    
+    const mail = new MailComposer({
+      from: `Réseau-CEE <${process.env.EMAIL_EXPEDITEUR}>`,
+      to: recipients,
+      cc: process.env.EMAIL_CC,
+      subject: subject,
+      html: html,
+      attachments: attachments,
+    });
+
+    const message = await mail.compile().build();
+    
+    // Encodage en Base64URL requis par l'API Gmail
+    const rawMessage = Buffer.from(message)
+      .toString('base64')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '');
+
+    // 3. Appel API pour créer le brouillon
+    const res = await gmail.users.drafts.create({
+      userId: 'me',
+      requestBody: {
+        message: {
+          raw: rawMessage
+        }
+      }
+    });
+
+    console.log("✅ Brouillon Gmail créé avec succès, ID:", res.data.id);
+    return res.data;
+
+  } catch (error) {
+    console.error("❌ Erreur lors de la création du brouillon Gmail :", error);
+    // Si l'erreur est liée aux permissions (Scope), on le saura ici
     throw error;
   }
 }
@@ -469,6 +531,7 @@ function prepareAttachments(formData) {
 
 module.exports = {
   sendEmail,
+  createDraft,
   buildEmailHTML,
   prepareAttachments,
 };
