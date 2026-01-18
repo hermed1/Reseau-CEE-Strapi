@@ -18,28 +18,26 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
       response.data.id
     );
 
-    // 2. Construction du HTML (Style Vert Pro)
+    // 2. Construction du HTML (Style Vert Pro & Sobre)
     const htmlContent = `
     <div style="background-color: #f4f6f8; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px 0;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden;">
         
-        <!-- Header Vert -->
-        <div style="background-color: #2E7D32; padding: 30px; text-align: center;">
-          <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 500; letter-spacing: 0.5px;">Nouvelle demande de contact</h1>
-        </div>
+        <!-- Header Vert (Bandeau simple) -->
+        <div style="background-color: #2E7D32; height: 10px;"></div>
 
         <!-- Body -->
         <div style="padding: 40px;">
           <p style="color: #546E7A; font-size: 16px; margin-top: 0;">Bonjour Sébastien,</p>
-          <p style="color: #37474F; line-height: 1.6;">Une nouvelle fiche contact vient d'être créée. Voici le récapitulatif des informations saisies :</p>
+          <p style="color: #37474F; line-height: 1.6;">Voici les coordonnées d'un nouveau contact :</p>
 
           <div style="margin-top: 30px; border: 1px solid #ECEFF1; border-radius: 6px;">
             
-            <!-- Site Web -->
+            <!-- Site d'origine -->
             <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
               <div style="width: 30px; font-size: 18px;">🌐</div>
               <div>
-                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Site web</div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Site d'origine</div>
                 <div style="font-size: 15px; color: #2E7D32; font-weight: 600; margin-top: 2px;">
                   <a href="https://eco-cee.fr" style="color: #2E7D32; text-decoration: none;">eco-cee.fr</a>
                 </div>
@@ -50,7 +48,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
             <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
               <div style="width: 30px; font-size: 18px;">🏢</div>
               <div>
-                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Société / SIRET</div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Raison sociale</div>
                 <div style="font-size: 15px; color: #263238; font-weight: 600; margin-top: 2px;">
                   ${data.raison_sociale || 'Non renseigné'}
                   <span style="font-weight: normal; color: #78909C; margin-left: 8px;">(${data.SIRET || 'N/A'})</span>
@@ -62,7 +60,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
             <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
               <div style="width: 30px; font-size: 18px;">👤</div>
               <div>
-                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Interlocuteur</div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Nom</div>
                 <div style="font-size: 15px; color: #263238; font-weight: 600; margin-top: 2px;">
                   ${data.Sexe ? (data.Sexe === 'monsieur' ? 'M.' : 'Mme') : ''} ${data.Nom || 'Non renseigné'}
                 </div>
@@ -95,7 +93,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
              <div style="padding: 15px; display: flex; align-items: center;">
               <div style="width: 30px; font-size: 18px;">🕒</div>
               <div>
-                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Disponibilité</div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Préférence horaire</div>
                 <div style="font-size: 15px; color: #263238; font-top: 2px;">
                   ${data.HoraireDebut || '?'} - ${data.HoraireFin || '?'}
                 </div>
@@ -106,18 +104,13 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
           <!-- Message Box -->
           <div style="margin-top: 30px;">
-            <div style="font-size: 12px; font-weight: bold; color: #546E7A; margin-bottom: 8px; text-transform: uppercase;">Message du prospect</div>
+            <div style="font-size: 12px; font-weight: bold; color: #546E7A; margin-bottom: 8px; text-transform: uppercase;">Message</div>
             <div style="background-color: #F1F8E9; border-left: 4px solid #2E7D32; padding: 20px; border-radius: 4px; color: #33691E; font-style: italic; line-height: 1.6;">
               "${(data.message || 'Aucun message').replace(/\n/g, '<br>')}"
             </div>
           </div>
 
-          <p style="margin-top: 40px; color: #37474F; font-size: 14px;">Bonne réception,<br><strong style="color: #2E7D32;">Votre assistant Eco-CEE</strong></p>
-        </div>
-
-        <!-- Footer -->
-        <div style="background-color: #FAFAFA; padding: 20px; text-align: center; border-top: 1px solid #EEEEEE;">
-          <p style="margin: 0; font-size: 11px; color: #90A4AE;">© ${new Date().getFullYear()} Eco-CEE. Tous droits réservés.</p>
+          <p style="margin-top: 40px; color: #37474F; font-size: 14px;">Bonne journée.</p>
         </div>
       </div>
     </div>
@@ -126,7 +119,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
     // 3. Création du brouillon Gmail
     try {
       await mailer.createDraft({
-        subject: `Contact : ${data.raison_sociale || data.Nom} (Eco-CEE)`,
+        subject: `Transmission contact CEE - ${data.raison_sociale || data.Nom}`,
         html: htmlContent
       });
       console.log(`[EcoCEE-Contact] Brouillon créé pour ${data.email}`);
