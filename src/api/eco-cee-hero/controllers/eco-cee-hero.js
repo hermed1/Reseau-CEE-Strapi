@@ -26,7 +26,6 @@ module.exports = createCoreController('api::eco-cee-hero.eco-cee-hero', ({ strap
         <!-- Header Vert -->
         <div style="background-color: #2E7D32; padding: 30px; text-align: center;">
           <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 500; letter-spacing: 0.5px;">Nouvelle demande (Hero)</h1>
-          <p style="color: #E8F5E9; margin: 10px 0 0 0; font-size: 14px;">Source : Formulaire Rapide Eco-CEE</p>
         </div>
 
         <!-- Body -->
@@ -36,6 +35,17 @@ module.exports = createCoreController('api::eco-cee-hero.eco-cee-hero', ({ strap
 
           <div style="margin-top: 30px; border: 1px solid #ECEFF1; border-radius: 6px;">
             
+            <!-- Site Web -->
+            <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
+              <div style="width: 30px; font-size: 18px;">🌐</div>
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Site web</div>
+                <div style="font-size: 15px; color: #2E7D32; font-weight: 600; margin-top: 2px;">
+                  <a href="https://eco-cee.fr" style="color: #2E7D32; text-decoration: none;">eco-cee.fr</a>
+                </div>
+              </div>
+            </div>
+
             <!-- Raison Sociale -->
             <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
               <div style="width: 30px; font-size: 18px;">🏢</div>
