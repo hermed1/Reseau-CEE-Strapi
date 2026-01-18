@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gtb_ingenierie_heroes",
+  "info": {
+    "singularName": "gtb-ingenierie-hero",
+    "pluralName": "gtb-ingenierie-heroes",
+    "displayName": "gtb-ingenierie-hero",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "raison_sociale": {
+      "type": "string",
+      "maxLength": 255,
+      "private": true
+    },
+    "nom": {
+      "type": "string",
+      "maxLength": 255,
+      "private": true
+    },
+    "telephone": {
+      "type": "string",
+      "private": true,
+      "required": true,
+      "maxLength": 20
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "private": true,
+      "maxLength": 254
+    },
+    "message": {
+      "type": "text",
+      "maxLength": 1000
+    }
+  }
+}
