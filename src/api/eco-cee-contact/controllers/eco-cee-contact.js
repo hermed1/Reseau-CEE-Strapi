@@ -11,34 +11,112 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
   async create(ctx) {
     // 1. Sauvegarde en base (standard)
     const response = await super.create(ctx);
-    const data = response.data.attributes;
+    
+    // CORRECTION : On récupère l'entrée brute depuis la base pour avoir accès aux champs "private"
+    const data = await strapi.entityService.findOne(
+      'api::eco-cee-contact.eco-cee-contact',
+      response.data.id
+    );
 
-    // 2. Construction du HTML
+    // 2. Construction du HTML (Style Vert Pro)
     const htmlContent = `
-    <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
-      <p>Bonjour Sébastien,</p>
-      <p>Vous trouverez ci-après les coordonnées d'un nouveau contact :</p>
-      
-      <div style="background-color: #f8f9fa; padding: 20px; border-left: 5px solid #0056b3; margin: 20px 0;">
-        <p style="margin: 5px 0;"><strong>Raison sociale :</strong> ${data.raison_sociale || 'Non renseigné'}</p>
-        <p style="margin: 5px 0;"><strong>SIRET :</strong> ${data.SIRET || 'Non renseigné'}</p>
-        <p style="margin: 5px 0;"><strong>Civilité :</strong> ${data.Sexe ? (data.Sexe === 'monsieur' ? 'Monsieur' : 'Madame') : 'Non renseigné'}</p>
-        <p style="margin: 5px 0;"><strong>Nom :</strong> ${data.Nom || 'Non renseigné'}</p>
-        <p style="margin: 5px 0;"><strong>Téléphone :</strong> ${data.telephone || 'Non renseigné'}</p>
-        <p style="margin: 5px 0;"><strong>E-mail :</strong> <a href="mailto:${data.email}">${data.email}</a></p>
-        <p style="margin: 5px 0;"><strong>Préférence horaire :</strong> ${data.HoraireDebut || '?'} - ${data.HoraireFin || '?'}</p>
-        <p style="margin: 5px 0;"><strong>Message :</strong></p>
-        <p style="background: #fff; padding: 10px; border: 1px solid #ddd;">${(data.message || '').replace(/\n/g, '<br>')}</p>
-      </div>
+    <div style="background-color: #f4f6f8; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px 0;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden;">
+        
+        <!-- Header Vert -->
+        <div style="background-color: #2E7D32; padding: 30px; text-align: center;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 500; letter-spacing: 0.5px;">Nouvelle demande de contact</h1>
+          <p style="color: #E8F5E9; margin: 10px 0 0 0; font-size: 14px;">Source : Formulaire Eco-CEE</p>
+        </div>
 
-      <p>Bonne journée.</p>
+        <!-- Body -->
+        <div style="padding: 40px;">
+          <p style="color: #546E7A; font-size: 16px; margin-top: 0;">Bonjour Sébastien,</p>
+          <p style="color: #37474F; line-height: 1.6;">Une nouvelle fiche contact vient d'être créée. Voici le récapitulatif des informations saisies :</p>
+
+          <div style="margin-top: 30px; border: 1px solid #ECEFF1; border-radius: 6px;">
+            
+            <!-- Raison Sociale -->
+            <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
+              <div style="width: 30px; font-size: 18px;">🏢</div>
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Société / SIRET</div>
+                <div style="font-size: 15px; color: #263238; font-weight: 600; margin-top: 2px;">
+                  ${data.raison_sociale || 'Non renseigné'}
+                  <span style="font-weight: normal; color: #78909C; margin-left: 8px;">(${data.SIRET || 'N/A'})</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Identité -->
+            <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
+              <div style="width: 30px; font-size: 18px;">👤</div>
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Interlocuteur</div>
+                <div style="font-size: 15px; color: #263238; font-weight: 600; margin-top: 2px;">
+                  ${data.Sexe ? (data.Sexe === 'monsieur' ? 'M.' : 'Mme') : ''} ${data.Nom || 'Non renseigné'}
+                </div>
+              </div>
+            </div>
+
+            <!-- Téléphone -->
+            <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
+              <div style="width: 30px; font-size: 18px;">📞</div>
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Téléphone</div>
+                <div style="font-size: 15px; color: #263238; font-weight: 600; margin-top: 2px;">
+                  <a href="tel:${data.telephone}" style="color: #263238; text-decoration: none;">${data.telephone || 'Non renseigné'}</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div style="padding: 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
+              <div style="width: 30px; font-size: 18px;">✉️</div>
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Email</div>
+                <div style="font-size: 15px; color: #2E7D32; font-weight: 600; margin-top: 2px;">
+                  <a href="mailto:${data.email}" style="color: #2E7D32; text-decoration: none;">${data.email}</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Horaires -->
+             <div style="padding: 15px; display: flex; align-items: center;">
+              <div style="width: 30px; font-size: 18px;">🕒</div>
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Disponibilité</div>
+                <div style="font-size: 15px; color: #263238; font-top: 2px;">
+                  ${data.HoraireDebut || '?'} - ${data.HoraireFin || '?'}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Message Box -->
+          <div style="margin-top: 30px;">
+            <div style="font-size: 12px; font-weight: bold; color: #546E7A; margin-bottom: 8px; text-transform: uppercase;">Message du prospect</div>
+            <div style="background-color: #F1F8E9; border-left: 4px solid #2E7D32; padding: 20px; border-radius: 4px; color: #33691E; font-style: italic; line-height: 1.6;">
+              "${(data.message || 'Aucun message').replace(/\n/g, '<br>')}"
+            </div>
+          </div>
+
+          <p style="margin-top: 40px; color: #37474F; font-size: 14px;">Bonne réception,<br><strong style="color: #2E7D32;">Votre assistant Eco-CEE</strong></p>
+        </div>
+
+        <!-- Footer -->
+        <div style="background-color: #FAFAFA; padding: 20px; text-align: center; border-top: 1px solid #EEEEEE;">
+          <p style="margin: 0; font-size: 11px; color: #90A4AE;">© ${new Date().getFullYear()} Eco-CEE. Tous droits réservés.</p>
+        </div>
+      </div>
     </div>
     `;
 
     // 3. Création du brouillon Gmail
     try {
       await mailer.createDraft({
-        subject: "Transmission contact CEE",
+        subject: `Contact : ${data.raison_sociale || data.Nom} (Eco-CEE)`,
         html: htmlContent
       });
       console.log(`[EcoCEE-Contact] Brouillon créé pour ${data.email}`);
