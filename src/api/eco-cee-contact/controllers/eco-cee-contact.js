@@ -45,7 +45,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
             
             <!-- Site d'origine -->
             <div style="padding: 12px 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">🌐</div>
+              <div style="width: 25px; font-size: 16px; margin-right: 15px;">🌐</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Site d'origine</div>
                 <div style="font-size: 14px; color: #2E7D32; font-weight: 600; margin-top: 1px;">
@@ -56,7 +56,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
             <!-- Date de réception -->
             <div style="padding: 12px 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">📅</div>
+              <div style="width: 25px; font-size: 16px; margin-right: 15px;">📅</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Date de réception</div>
                 <div style="font-size: 14px; color: #263238; font-weight: 600; margin-top: 1px;">
@@ -67,7 +67,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
             <!-- Raison Sociale -->
             <div style="padding: 12px 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">🏢</div>
+              <div style="width: 25px; font-size: 16px; margin-right: 15px;">🏢</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Raison sociale</div>
                 <div style="font-size: 14px; color: #263238; font-weight: 600; margin-top: 1px;">
@@ -78,7 +78,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
             <!-- SIRET (Ligne séparée) -->
             <div style="padding: 12px 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">🔢</div>
+              <div style="width: 25px; font-size: 16px; margin-right: 15px;">🔢</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">SIRET</div>
                 <div style="font-size: 14px; color: #263238; font-weight: 600; margin-top: 1px;">
@@ -89,7 +89,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
             <!-- Identité -->
             <div style="padding: 12px 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">👤</div>
+              <div style="width: 25px; font-size: 16px; margin-right: 15px;">👤</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Nom</div>
                 <div style="font-size: 14px; color: #263238; font-weight: 600; margin-top: 1px;">
@@ -100,7 +100,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
             <!-- Téléphone -->
             <div style="padding: 12px 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">📞</div>
+              <div style="width: 25px; font-size: 16px; margin-right: 15px;">📞</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Téléphone</div>
                 <div style="font-size: 14px; color: #263238; font-weight: 600; margin-top: 1px;">
@@ -111,7 +111,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
             <!-- Email -->
             <div style="padding: 12px 15px; border-bottom: 1px solid #ECEFF1; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">✉️</div>
+              <div style="width: 25px; font-size: 16px; margin-right: 15px;">✉️</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Email</div>
                 <div style="font-size: 14px; color: #2E7D32; font-weight: 600; margin-top: 1px;">
@@ -122,7 +122,7 @@ module.exports = createCoreController('api::eco-cee-contact.eco-cee-contact', ({
 
             <!-- Horaires -->
              <div style="padding: 12px 15px; display: flex; align-items: center;">
-              <div style="width: 25px; font-size: 16px;">🕒</div>
+              <div style="width: 25px; font-size: 16px; margin-right: 15px;">🕒</div>
               <div>
                 <div style="font-size: 10px; text-transform: uppercase; color: #90A4AE; font-weight: bold; letter-spacing: 0.5px;">Préférence horaire</div>
                 <div style="font-size: 14px; color: #263238; font-top: 1px;">
